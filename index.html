@@ -14,5 +14,17 @@
     </div>
 
 </body>
+<script>
+    function xxi(name, age, friend) {
+        this.name = name;
+        this.age = age;
+        this.friend = friend;
+    }
+    xxi.prototype.play = function () {
+        alert("football");
+    }
+    var xx = new xxi("Alice", 23, ["li", "Chen", "Zhang"]);
+    xx.play();
+</script>
 
 </html>
