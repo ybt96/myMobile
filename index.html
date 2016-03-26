@@ -1,30 +1,312 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+    <title></title>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        #box {
+            width: 660px;
+            height: 380px;
+            margin: 10px auto;
+            overflow: hidden;
+            position: relative
+        }
+        
+        #uls li {
+            list-style: none
+        }
+        
+        #uls p {
+            width: 660px;
+            height: 90px;
+            background: #000000;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            opacity: 0.2;
+            z-index: 10
+        }
+        
+        #uls span {
+            font-size: 20px;
+            color: #FFF;
+            line-height: 85px;
+            margin-left: 5px;
+            font-weight: bold;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        
+        #ols {
+            position: absolute;
+            bottom: 30px;
+            right: 20px;
+        }
+        
+        #ols li {
+            float: left;
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            list-style: none;
+            background: #FFF
+        }
+        
+        #ols .hh {
+            background: red
+        }
+        
+        #ols a:hover li {
+            background: red
+        }
+        
+        #left {
+            position: absolute;
+            background: url("focus_btn.png") no-repeat left bottom;
+            display: none;
+            width: 40px;
+            height: 74px;
+            top: 170px;
+            left: 20px;
+            z-index: 10
+        }
+        
+        #right {
+            width: 40px;
+            height: 74px;
+            position: absolute;
+            top: 170px;
+            right: 20px;
+            background: url("focus_btn.png") no-repeat right bottom;
+            display: none;
+            z-index: 10
+        }
+    </style>
 </head>
 
 <body>
-    <div>
-        <p>hello,mymobile</p>
-        <p>hello,mymobile</p>
-        <p>0000000000000000000100000000000000000002</p>
-    </div>
+    <div id="box">
+        <div id="left"></div>
+        <div id="right"></div>
+        <ul id="uls">
+            <li><img src="01.jpg">
+                <p></p><span>红三代叶明子太庙办盛典 白色羽毛装高贵动人</span></li>
+            <li><img src="02.jpg">
+                <p></p><span>佟大为登封面表情搞怪 成熟男人也是天真男孩</span></li>
+            <li><img src="03.jpg">
+                <p></p><span>21岁出柜超模巴厘自曝搞笑全裸照</span></li>
+            <li><img src="04.jpg">
+                <p></p><span>金喜善出道21年 皮肤白皙越长越“嫩”！</span></li>
+        </ul>
 
+        <ol id="ols">
+            <li class="hh"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+    <script>
+        var pics, ols, left, right
+
+        pics = document.getElementsByTagName("ul")[0].getElementsByTagName("li")
+        ols = document.getElementsByTagName("ol")[0].getElementsByTagName("li")
+        left = document.getElementById("left")
+        right = document.getElementById("right")
+
+        var j = 0
+
+        function auto() {
+            for (var i = 0; i < pics.length; i++) {
+                pics[i].style.display = "none"
+                ols[i].className = ""
+            }
+            pics[j].style.display = "block"
+            ols[j].className = "hh"
+            j++
+            if (j > pics.length - 1) {
+                j = 0
+            }
+        }
+        aa = setInterval(auto, 1000)
+        left.onmouseover = function () {
+            left.style.backgroundPosition = "left top"
+        }
+
+        left.onmouseout = function () {
+            left.style.backgroundPosition = "left bottom"
+        }
+
+        right.onmouseover = function () {
+            right.style.backgroundPosition = "right top"
+        }
+
+        right.onmouseout = function () {
+            right.style.backgroundPosition = "right bottom"
+        }
+
+        box.onmouseover = function () {
+            clearInterval(aa)
+            left.style.display = "block"
+            right.style.display = "block"
+        }
+        box.onmouseout = function () {
+            aa = setInterval(auto, 1000)
+            left.style.display = "none"
+            right.style.display = "none"
+        }
+
+        left.onclick = function () {
+            j--
+            if (j < 0) {
+                j = pics.length - 1
+            }
+            for (var i = 0; i < pics.length; i++) {
+                pics[i].style.display = "none"
+                ols[i].className = ""
+            }
+            pics[j].style.display = "block"
+            ols[j].className = "hh"
+        }
+        right.onclick = function () {
+            j++
+            if (j > pics.length - 1) {
+                j = 0
+            }
+            for (var i = 0; i < pics.length; i++) {
+                pics[i].style.display = "none"
+                ols[i].className = ""
+            }
+            pics[j].style.display = "block"
+            ols[j].className = "hh"
+
+        }
+
+        for (var k = 0; k < ols.length; k++) {
+            ols[k].index = k
+            ols[k].onmouseover = function () {
+                for (var i = 0; i < ols.length; i++) {
+                    ols[i].className = ""
+                    pics[i].style.display = "none"
+
+                }
+                this.className = "hh"
+                pics[this.index].style.display = "none"
+
+                j = this.index
+            }
+        }
+        /*var olis,ulis,left,right,box;
+        olis = document.getElementById("ols").getElementsByTagName("li");
+        ulis = document.getElementById("uls").getElementsByTagName("li");
+        left = document.getElementById("left");
+        right=document.getElementById("right");
+        box = document.getElementById("box");
+
+
+        var k=0;
+
+        function add(){
+            k++;
+            if(k>olis.length-1){
+                k=0;
+            }
+
+            for(var i=0;i<olis.length;i++){
+                olis[i].className="";
+                ulis[i].style.display="none";
+            }
+            olis[k].className="hh";
+            ulis[k].style.display="block";
+        }
+
+
+        sl = setInterval(add,1000);
+
+        box.onmouseout=function(){
+            sl = setInterval(add,1000);
+            left.style.display="none";
+            right.style.display="none"
+        }
+        box.onmouseover=function(){
+            clearInterval(sl)
+            left.style.display="block";
+            right.style.display="block"
+        }
+
+
+
+        left.onmouseover=function(){
+            left.style.backgroundPosition="left top"
+        }
+        left.onmouseout=function(){
+            left.style.backgroundPosition="left bottom"
+        }
+
+
+
+        right.onmouseover=function(){
+            right.style.backgroundPosition="right top"
+        }
+        right.onmouseout=function(){
+            right.style.backgroundPosition="right bottom"
+        }
+
+
+
+
+        left.onclick=function(){
+            k--;
+            if(k<0){
+                k=olis.length-1;
+            }
+
+            for(var i=0;i<olis.length;i++){
+                olis[i].className="";
+                ulis[i].style.display="none";
+            }
+            olis[k].className="hh";
+            ulis[k].style.display="block";
+        }
+
+
+        right.onclick=function(){
+            k++;
+            if(k>olis.length-1){
+                k=0;
+            }
+
+            for(var i=0;i<olis.length;i++){
+                olis[i].className="";
+                ulis[i].style.display="none";
+            }
+            olis[k].className="hh";
+            ulis[k].style.display="block";
+        }
+
+
+        for(var j=0;j<olis.length;j++){
+
+            olis[j].a=j;
+            olis[j].onclick=function(){
+                for(var i=0;i<olis.length;i++){
+                    olis[i].className="";
+                    ulis[i].style.display="none";
+                }
+                this.className="hh";
+                ulis[this.a].style.display="block";
+                k = this.a
+            }
+        }*/
+    </script>
 </body>
-<script>
-    function xxi(name, age, friend) {
-        this.name = name;
-        this.age = age;
-        this.friend = friend;
-    }
-    xxi.prototype.play = function () {
-        alert("football");
-    }
-    var xx = new xxi("Alice", 23, ["li", "Chen", "Zhang"]);
-    xx.play();
-</script>
 
 </html>
