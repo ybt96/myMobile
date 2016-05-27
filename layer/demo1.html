@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>弹出层</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .main {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #overpar {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: .4;
+            filter: alpha(opacity=40);
+        }
+        
+        #modal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            background: #3366ff;
+        }
+        
+        #content {
+            background: #fff;
+            padding: 10px 30px;
+        }
+        
+        a {
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        #close {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            line-height: 20px;
+            background: rgba(255, 255, 255, .6);
+            right: -10px;
+            top: -5px;
+        }
+        
+        #login {
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <a href="#" id="login">登录</a>
+        <!--  <div id="overpar">
+        </div>
+        <div id="modal">
+            <div id="content">内容区域</div>
+            <a href="#" id="close">×</a>
+        </div>-->
+
+
+    </div>
+    <script src="../lib/jquery.js"></script>
+    <script src="js/jquery.layer.js"></script>
+    <script>
+        //调用
+        $(function () {
+            $("#login").on("click", function (e) {
+                modal.open({
+                    content: "内容"
+                });
+                e.preventDefault();
+
+            })
+
+        })
+    </script>
+
+</body>
+
+</html>
